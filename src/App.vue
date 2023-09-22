@@ -1,10 +1,9 @@
 <template>
-  <div
-    id=""
-    ref="ok"
-    class=""></div>
+  <div></div>
 </template>
 
 <script setup></script>
 
-<style lang="scss"></style>
+<style lang="scss">
+  @import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+</style>
