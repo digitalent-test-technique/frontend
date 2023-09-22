@@ -55,7 +55,14 @@
       >
     </div>
     <div class="form-group">
-      <btn-primary class="ml-auto"> inscrire </btn-primary>
+      <btn-primary class="ml-auto">
+        <span
+          v-if="isLoading"
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"></span>
+        inscrire
+      </btn-primary>
     </div>
   </form>
 </template>
@@ -64,6 +71,7 @@
   import { ref } from 'vue';
   import BaseInput from '@/components/BaseInput.vue';
   import BtnPrimary from '@/components/BtnPrimary.vue';
+  import { useUserStore } from '@/store/user';
 
   const lastName = ref();
   const firstName = ref();
@@ -72,15 +80,27 @@
   const phone = ref();
   const password = ref();
 
-  function handleSubmit() {
-    console.log({
-      lastName: lastName.value,
-      firstName: firstName.value,
-      email: email.value,
-      address: address.value,
-      phone: phone.value,
-      password: password.value,
-    });
+  const isLoading = ref(false);
+
+  const userStore = useUserStore();
+  const { signUp } = userStore;
+
+  async function handleSubmit() {
+    try {
+      isLoading.value = true;
+      await signUp({
+        lastName: lastName.value,
+        firstName: firstName.value,
+        email: email.value,
+        address: address.value,
+        phone: phone.value,
+        password: password.value,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      isLoading.value = false;
+    }
   }
 </script>
 

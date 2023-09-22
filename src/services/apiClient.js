@@ -1,26 +1,22 @@
-const API_URL = 'http://localhost/digitalent/test-technique/backend/api/user/';
+const API_URL = 'http://localhost/digitalent/test-technique/backend/api/user';
 export default {
-  async get(endpoint, token) {
+  async get(endpoint) {
     const requestOptions = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
       },
     };
     const response = await fetch(`${API_URL}/${endpoint}`, requestOptions);
     return handleResponse(response);
   },
 
-  async post(endpoint, body, token = '') {
+  async post(endpoint, body) {
     const headers = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     };
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
     const requestOptions = {
       method: 'POST',
       headers,
