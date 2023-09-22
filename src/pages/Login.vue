@@ -1,9 +1,36 @@
 <template>
-  <the-login></the-login>
+  <form
+    class="container px-3 px-sm-5 py-5 mt-5 col-md-6"
+    @submit.prevent="handleSubmit">
+    <base-input
+      v-model="email"
+      label="E-mail"
+      type="email"
+      placeholder="Saisissez votre adresse e-mail">
+    </base-input>
+    <base-input
+      v-model="password"
+      label="Mot de passe"
+      type="password"
+      placeholder="Saisissez votre mot de passe"></base-input>
+    <btn-primary> login </btn-primary>
+  </form>
 </template>
 
 <script setup>
-  import TheLogin from '@/components/TheLogin.vue';
+  import { ref } from 'vue';
+  import BaseInput from './BaseInput.vue';
+  import BtnPrimary from './BtnPrimary.vue';
+
+  const email = ref();
+  const password = ref();
+
+  function handleSubmit() {
+    console.log({
+      email: email.value,
+      password: password.value,
+    });
+  }
 </script>
 
 <style lang="scss"></style>
