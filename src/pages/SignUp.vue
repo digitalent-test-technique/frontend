@@ -46,18 +46,16 @@
         type="password"
         placeholder="Mot de passe"></base-input>
     </div>
-    <div class="row">
-      <div class="col-md-6 d-flex align-items-center">
-        Avez-vous un compte ?
-        <router-link
-          to="/login"
-          class="btn btn-secondary ml-2">
-          Connectez-vous</router-link
-        >
-      </div>
-      <div class="col-md-6 d-flex">
-        <btn-primary class="w-50 ml-auto"> inscrire </btn-primary>
-      </div>
+    <div class="form-group">
+      Avez-vous un compte ?
+      <router-link
+        to="/login"
+        class="ml-2">
+        Connectez-vous</router-link
+      >
+    </div>
+    <div class="form-group">
+      <btn-primary class="ml-auto"> inscrire </btn-primary>
     </div>
   </form>
 </template>

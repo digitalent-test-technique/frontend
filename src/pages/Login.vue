@@ -13,6 +13,14 @@
       label="Mot de passe"
       type="password"
       placeholder="Saisissez votre mot de passe"></base-input>
+    <div class="form-group">
+      Vous n'avez pas de compte?
+      <router-link
+        to="/"
+        class="ml-2">
+        inscrivez-vous.</router-link
+      >
+    </div>
     <btn-primary> login </btn-primary>
   </form>
 </template>
