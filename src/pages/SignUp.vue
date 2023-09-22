@@ -47,7 +47,14 @@
         placeholder="Mot de passe"></base-input>
     </div>
     <div class="row">
-      <div class="col-md-6 d-flex align-items-center">Avez-vous un compte ? Connectez-vous</div>
+      <div class="col-md-6 d-flex align-items-center">
+        Avez-vous un compte ?
+        <router-link
+          to="/login"
+          class="btn btn-secondary ml-2">
+          Connectez-vous</router-link
+        >
+      </div>
       <div class="col-md-6 d-flex">
         <btn-primary class="w-50 ml-auto"> inscrire </btn-primary>
       </div>
@@ -57,8 +64,8 @@
 
 <script setup>
   import { ref } from 'vue';
-  import BaseInput from './BaseInput.vue';
-  import BtnPrimary from './BtnPrimary.vue';
+  import BaseInput from '@/components/BaseInput.vue';
+  import BtnPrimary from '@/components/BtnPrimary.vue';
 
   const lastName = ref();
   const firstName = ref();

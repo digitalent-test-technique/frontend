@@ -19,8 +19,8 @@
 
 <script setup>
   import { ref } from 'vue';
-  import BaseInput from './BaseInput.vue';
-  import BtnPrimary from './BtnPrimary.vue';
+  import BaseInput from '@/components/BaseInput.vue';
+  import BtnPrimary from '@/components/BtnPrimary.vue';
 
   const email = ref();
   const password = ref();
