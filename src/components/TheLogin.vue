@@ -1,6 +1,6 @@
 <template>
   <form
-    class="container p-5 mt-5"
+    class="container px-3 px-sm-5 py-5 mt-5 col-md-6"
     @submit.prevent="handleSubmit">
     <base-input
       v-model="email"
