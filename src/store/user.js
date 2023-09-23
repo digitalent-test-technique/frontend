@@ -80,7 +80,7 @@ export const useUserStore = defineStore('user', () => {
   async function getUser(userId) {
     const response = await apiClient.get(`read.php?id=${userId}`);
     if (response.ok) {
-      Object.assign(user, response.data);
+      Object.assign(user, response.data.data);
     }
     return response;
   }
