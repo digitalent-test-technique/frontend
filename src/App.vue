@@ -21,7 +21,11 @@
         Profil
       </router-link>
     </div>
-    <btn-primary @click="logout">Se déconnecter</btn-primary>
+    <btn-primary
+      v-if="isAuth"
+      @click="logout"
+      >Se déconnecter</btn-primary
+    >
   </nav>
   <router-view></router-view>
 </template>

@@ -46,7 +46,9 @@
         type="password"
         placeholder="Mot de passe"></base-input>
     </div>
-    <div class="form-group">
+    <div
+      v-if="!isAuth"
+      class="form-group">
       Avez-vous un compte ?
       <router-link
         to="/login"
@@ -69,6 +71,7 @@
 
 <script setup>
   import { ref } from 'vue';
+  import { storeToRefs } from 'pinia';
   import BaseInput from '@/components/BaseInput.vue';
   import BtnPrimary from '@/components/BtnPrimary.vue';
   import { useUserStore } from '@/store/user';
@@ -83,6 +86,7 @@
   const isLoading = ref(false);
 
   const userStore = useUserStore();
+  const { isAuth } = storeToRefs(userStore);
   const { signUp } = userStore;
 
   async function handleSubmit() {
