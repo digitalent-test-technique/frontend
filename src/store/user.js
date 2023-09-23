@@ -1,3 +1,4 @@
+import router from '@/router';
 import apiClient from '@/services/apiClient.js';
 import { setCookie, deleteCookie, getCookie } from '@/utilities.js';
 
@@ -38,6 +39,12 @@ export const useUserStore = defineStore('user', () => {
       setCookie('token', response.data.token, 365);
       token.value = response.data.token;
       userId.value = response.data.id;
+      router.replace({
+        name: 'user',
+        params: {
+          userID: response.data.id,
+        },
+      });
     }
     return response;
   }
