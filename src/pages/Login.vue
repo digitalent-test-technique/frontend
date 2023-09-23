@@ -21,7 +21,14 @@
         inscrivez-vous.</router-link
       >
     </div>
-    <btn-primary> login </btn-primary>
+    <btn-primary>
+      <span
+        v-if="isLoading"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"></span>
+      login
+    </btn-primary>
   </form>
 </template>
 
@@ -29,15 +36,27 @@
   import { ref } from 'vue';
   import BaseInput from '@/components/BaseInput.vue';
   import BtnPrimary from '@/components/BtnPrimary.vue';
+  import { useUserStore } from '@/store/user';
 
   const email = ref();
   const password = ref();
 
-  function handleSubmit() {
-    console.log({
-      email: email.value,
-      password: password.value,
-    });
+  const isLoading = ref(false);
+
+  const userStore = useUserStore();
+  const { login } = userStore;
+  async function handleSubmit() {
+    try {
+      isLoading.value = true;
+      await login({
+        email: email.value,
+        password: password.value,
+      });
+    } catch (er) {
+      console.log(er);
+    } finally {
+      isLoading.value = false;
+    }
   }
 </script>
 
