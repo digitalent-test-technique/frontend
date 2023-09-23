@@ -7,9 +7,10 @@
   import { onMounted } from 'vue';
 
   const userStore = useUserStore();
-  const { autoLogin } = userStore;
+  const { autoLogin, validateToken } = userStore;
 
-  onMounted(() => {
+  onMounted(async () => {
+    await validateToken();
     autoLogin();
   });
 </script>

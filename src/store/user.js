@@ -48,6 +48,20 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  async function validateToken() {
+    const localToken = getCookie('token');
+    if (localToken) {
+      const response = await apiClient.get('validate-token.php');
+      if (response.ok) {
+        token.value = localToken;
+        userId.value = response.data.id;
+      } else {
+        logout();
+      }
+      return response;
+    }
+  }
+
   async function logout() {
     deleteCookie('token');
     token.value = null;
@@ -68,6 +82,7 @@ export const useUserStore = defineStore('user', () => {
     signUp,
     login,
     autoLogin,
+    validateToken,
     logout,
     getUser,
   };
