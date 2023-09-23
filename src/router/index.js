@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '@/pages/Login.vue';
 import SignUp from '@/pages/SignUp.vue';
 import User from '@/pages/User.vue';
+import Graphs from '@/pages/Graphs.vue';
 
 import { useUserStore } from '@/store/user';
 import { storeToRefs } from 'pinia';
@@ -28,6 +29,13 @@ const router = createRouter({
       path: '/user/:userID',
       component: User,
       name: 'user',
+      meta: { needsAuth: true },
+    },
+    {
+      //
+      path: '/graphs',
+      component: Graphs,
+      name: 'graphs',
       meta: { needsAuth: true },
     },
   ],

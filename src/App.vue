@@ -20,6 +20,11 @@
         :to="`/user/${userId}`">
         Profil
       </router-link>
+      <router-link
+        class="nav-item nav-link"
+        :to="`/graphs`">
+        Graphes
+      </router-link>
     </div>
     <btn-primary
       v-if="isAuth"
@@ -38,9 +43,10 @@
 
   const userStore = useUserStore();
   const { isAuth, userId } = storeToRefs(userStore);
-  const { validateToken, logout } = userStore;
+  const { validateToken, logout, autoLogin } = userStore;
 
   onMounted(async () => {
+    autoLogin();
     await validateToken();
   });
 </script>
