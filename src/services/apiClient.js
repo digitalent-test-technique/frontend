@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/digitalent/test-technique/backend/api/user';
+const API_URL = 'https://digitalent.technicaltest.site/api/user';
 export default {
   async get(endpoint) {
     const requestOptions = {
