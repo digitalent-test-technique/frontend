@@ -10,7 +10,7 @@
   </div>
   <div
     v-else
-    class="container py-5">
+    class="container py-5 table-responsive">
     <table
       v-if="user?.id"
       class="table">

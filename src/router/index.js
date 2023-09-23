@@ -31,6 +31,7 @@ const router = createRouter({
       meta: { needsAuth: true },
     },
   ],
+  linkExactActiveClass: 'active',
 });
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();

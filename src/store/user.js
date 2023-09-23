@@ -37,6 +37,7 @@ export const useUserStore = defineStore('user', () => {
 
     if (response.ok) {
       setCookie('token', response.data.token, 365);
+      setCookie('user-id', response.data.id, 365);
       token.value = response.data.token;
       userId.value = response.data.id;
       router.replace({
@@ -50,8 +51,13 @@ export const useUserStore = defineStore('user', () => {
   }
   function autoLogin() {
     const localToken = getCookie('token');
+    const localUserId = getCookie('user-id');
+
     if (localToken) {
       token.value = localToken;
+    }
+    if (localUserId) {
+      userId.value = localUserId;
     }
   }
 
@@ -73,6 +79,7 @@ export const useUserStore = defineStore('user', () => {
 
   async function logout() {
     deleteCookie('token');
+    deleteCookie('user-id');
     token.value = null;
     userId.value = null;
   }
