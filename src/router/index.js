@@ -35,6 +35,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const { isAuth } = storeToRefs(userStore);
+  const { autoLogin } = userStore;
+  autoLogin();
 
   if (to.matched.some(({ meta }) => meta.needsAuth) && !isAuth.value) {
     next({ name: 'login' });

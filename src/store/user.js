@@ -58,7 +58,9 @@ export const useUserStore = defineStore('user', () => {
   async function validateToken() {
     const localToken = getCookie('token');
     if (localToken) {
-      const response = await apiClient.get('validate-token.php');
+      const response = await apiClient.post('validate-token.php', {
+        token: localToken,
+      });
       if (response.ok) {
         token.value = localToken;
         userId.value = response.data.id;
