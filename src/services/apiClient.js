@@ -33,7 +33,7 @@ function handleResponse(response) {
     return {
       ok: response.ok,
       status: response.status,
-      ...data,
+      data,
       message: data.message || null,
     };
   });

@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', () => {
   const token = ref(null);
   const user = reactive({});
 
-  const userId = computed(() => user.id);
+  const userId = ref(null);
   const isAuth = computed(() => !!token.value);
 
   async function signUp(payload) {
@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', () => {
       password: payload.password,
     });
     if (response.ok) {
-      login({
+      await login({
         email: payload.email,
         password: payload.password,
       });
@@ -37,6 +37,7 @@ export const useUserStore = defineStore('user', () => {
     if (response.ok) {
       setCookie('token', response.data.token, 365);
       token.value = response.data.token;
+      userId.value = response.data.id;
     }
     return response;
   }
@@ -50,6 +51,7 @@ export const useUserStore = defineStore('user', () => {
   async function logout() {
     deleteCookie('token');
     token.value = null;
+    userId.value = null;
   }
 
   async function getUser(userId) {
