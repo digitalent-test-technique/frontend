@@ -1,6 +1,13 @@
 <template>
+  <base-alert
+    v-if="errorMessage"
+    :message="errorMessage"
+    type="danger">
+  </base-alert>
   <form
-    class="container p-5 mt-5"
+    class="container p-5 mt-5 needs-validation"
+    :class="{ 'was-validated': isSubmitted }"
+    novalidate
     @submit.prevent="handleSubmit">
     <div class="row">
       <base-input
@@ -75,6 +82,9 @@
   import BaseInput from '@/components/BaseInput.vue';
   import BtnPrimary from '@/components/BtnPrimary.vue';
   import { useUserStore } from '@/store/user';
+  import BaseAlert from '@/components/BaseAlert.vue';
+
+  const isSubmitted = ref(false);
 
   const lastName = ref();
   const firstName = ref();
@@ -85,6 +95,8 @@
 
   const isLoading = ref(false);
 
+  const errorMessage = ref(null);
+
   const userStore = useUserStore();
   const { isAuth } = storeToRefs(userStore);
   const { signUp } = userStore;
@@ -92,7 +104,9 @@
   async function handleSubmit() {
     try {
       isLoading.value = true;
-      await signUp({
+      errorMessage.value = null;
+      isSubmitted.value = true;
+      const response = await signUp({
         lastName: lastName.value,
         firstName: firstName.value,
         email: email.value,
@@ -100,10 +114,16 @@
         phone: phone.value,
         password: password.value,
       });
-    } catch (error) {
-      console.log(error);
+      if (!response.ok) {
+        errorMessage.value = response.message;
+      }
+    } catch (er) {
+      console.log(er);
     } finally {
       isLoading.value = false;
+      setTimeout(() => {
+        errorMessage.value = null;
+      }, 2000);
     }
   }
 </script>

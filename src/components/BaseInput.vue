@@ -1,11 +1,12 @@
 <template>
   <label class="form-group d-block">
-    <p class="mb-2">{{ label }}</p>
+    <p class="mb-2">{{ label }} <span class="text-danger">*</span></p>
     <input
       v-model="value"
       class="form-control"
       :type="type"
-      :placeholder="placeholder" />
+      :placeholder="placeholder"
+      required />
   </label>
 </template>
 
