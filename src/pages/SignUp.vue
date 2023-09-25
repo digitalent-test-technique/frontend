@@ -10,6 +10,25 @@
     :class="{ 'was-validated': isSubmitted }"
     novalidate
     @submit.prevent.stop="handleSubmit">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li
+          class="breadcrumb-item"
+          :class="{
+            active: isStepOne,
+          }"
+          @click="isStepOne = true">
+          L'étape 1
+        </li>
+        <li
+          class="breadcrumb-item"
+          :class="{
+            active: !isStepOne,
+          }">
+          L'étape 2
+        </li>
+      </ol>
+    </nav>
     <template v-if="isStepOne">
       <div class="row">
         <base-input
